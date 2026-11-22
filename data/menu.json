@@ -1,0 +1,33 @@
+{
+ "fetched": "22 Nov 2026",
+ "days": [
+ {"day":"Sunday","date":"2026-11-22","meals":{
+  "Breakfast":{"time":"08:00 - 10:00","items":["Choice of Egg","Boiled Soya Sprout","Chocos","Bread + Butter + Jam","Misal Pav","Millets Porridge","Onion + Lemon","Cut Honey Dew","Tea + Coffee + Bournvita","Milk"]},
+  "Lunch":{"time":"12:00 - 14:00","items":["Green Salad (cucumber, beetroot, carrot, radish)","Paneer Lababdar","Hariyali Chicken","Naan/Chapati (limited)","Kashmiri Pulao","Sambar","Boondi Raita","Blackcurrant Ice Cream","Pyaaz Ki Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Green Salad (cucumber, beetroot, carrot, radish)","Aloo Palak","Whole Masoor Dal","Chapati","Plain Rice","Veg Clear Soup","Rasam"]}}},
+ {"day":"Monday","date":"2026-11-23","meals":{
+  "Breakfast":{"time":"07:15 - 09:30","items":["Choice of Egg","Boiled Mix Sprout Tadka","Cornflakes","Bread + Butter + Jam","Masala Dosa","Sambhar","Peanut Chutney","Cut Pineapple","Tea + Coffee + Bournvita","Milk"]},
+  "Lunch":{"time":"11:30 - 13:30","items":["Veg Bullets","Baingan Bharta","Rajma Raseela","Dal Panchratan","Sattu Ke Parathe","Plain Rice","Plain Curd","Sambar","Lahsun Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Green Salad (cucumber, beetroot, carrot, radish)","Gatta Curry","Mix Dal","Chapati","Plain Rice","Palak Soup","Rasam","Moong Dal Halwa","Lahsun Chutney"]}}},
+ {"day":"Tuesday","date":"2026-11-24","meals":{
+  "Breakfast":{"time":"07:15 - 09:30","items":["Choice of Egg","Moong Sprout (ankurit)","Chocos","Bread + Butter + Jam","Stuffed Kulcha","Sweet Daliya","Onion + Lemon","Orange","Tea + Coffee + Bournvita","Milk"]},
+  "Lunch":{"time":"11:30 - 13:30","items":["Masala Papad","Aloo Gobhi Mutter","Dahi Kadhi Pakoda","Moong Dal Khichdi","Chapati","Plain Rice","Sambar","Plain Curd","Lahsun Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Mirch Ke Tapore","Aloo Rassa","Chana Dal Tadka","Chapati/Bati","Plain Rice","Tomato Soup","Rasam","Churma","Lahsun Chutney"]}}},
+ {"day":"Wednesday","date":"2026-11-25","meals":{
+  "Breakfast":{"time":"07:15 - 09:30","items":["Choice of Egg","Moth Sprout (ankurit)","Cornflakes","Bread + Butter + Jam","Mix Veg Uttapam","Sambhar","Coconut Chutney","Papaya","Tea + Coffee + Bournvita","Milk"]},
+  "Lunch":{"time":"11:30 - 13:30","items":["Green Salad (cucumber, beetroot, carrot, radish)","Paneer Amritsari","Chicken Home Style","Onion Rice","Chapati","Sambar","Mix Veg Raita","Pyaaz Ki Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Medu Wada","Masala Dosa","Sambhar","Coconut Chutney","Jeera Rice","Manchow Soup","Chapati (limited)","Chocolate Barfi","Podi Chutney"]}}},
+ {"day":"Thursday","date":"2026-11-26","meals":{
+  "Breakfast":{"time":"07:15 - 09:30","items":["Choice of Egg","Boiled Chana Sprout","Chocos","Bread + Butter + Jam","Veg Poha","Sweet Daliya","Sev","Banana","Tea + Coffee + Bournvita","Milk"]},
+  "Lunch":{"time":"11:30 - 13:30","items":["Koshimbir Salad","Paneer Butter Masala","Dal Maharani","Naan/Chapati (limited)","Peas Carrot Pulao","Masala Chaas","Chocolate Chip Ice Cream","Tomato Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Lemon + Onion","Jeera Aloo","Amritsari Chole","Kulcha/Chapati (limited)","Plain Rice","Lemon Coriander Soup","Rasam","Pineapple Sheera","Pyaaz Ki Chutney"]}}},
+ {"day":"Friday","date":"2026-11-27","meals":{
+  "Breakfast":{"time":"07:15 - 09:30","items":["Choice of Egg","Boiled Soya Sprout","Cornflakes","Bread + Butter + Jam","Moong Dal Chilla","Sweet Daliya","Coconut Chutney","Cut Pineapple","Tea + Coffee + Bournvita"]},
+  "Lunch":{"time":"11:30 - 13:30","items":["Corn Chaat","Capsicum Pitla","Dum Aloo Kashmiri","Dal Makhani","Chapati","Plain Rice","Sambar","Masala Chaas","Pyaaz Ki Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Green Salad (cucumber, beetroot, carrot, radish)","Tofu Masala","Egg Curry","Mix Dal Tadka","Peas Pulao","Chapati","Rasam","Shahi Tukda","Lahsun Chutney"]}}},
+ {"day":"Saturday","date":"2026-11-28","meals":{
+  "Breakfast":{"time":"07:15 - 09:30","items":["Choice of Egg","Boiled Mix Sprout Tadka","Chocos","Bread + Butter + Jam","Seviya Upma","Adrak Chutney","Cut Honey Dew","Tea + Coffee + Bournvita","Milk"]},
+  "Lunch":{"time":"11:30 - 13:30","items":["Crispy Corn","Kala Chana Masala","Curd/Butter","Sattu Paratha/Chapati (limited)","Plain Rice","Sambar","Lahsun Chutney"]},
+  "Dinner":{"time":"18:45 - 20:15","items":["Bhel Puri","Carrot, Beans, Green Peas, Cabbage","Dal Makhani","Chapati","Onion Rice","Veg Clear Soup","Rasam","Gulab Jamun","Sweet & Green Chutney"]}}}
+ ]
+}

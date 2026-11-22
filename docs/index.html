@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mess Menu · BITS Pilani</title>
+<meta name="theme-color" content="#d9480f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mess Menu">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f1e7; --card:#fffdf8; --ink:#1d1a16; --muted:#6f665a; --line:#e4dccd;
+    --accent:#d9480f; --accent-soft:#fde8dc; --good:#2b8a3e; --good-soft:#e3f5e6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#14120f; --card:#1d1a16; --ink:#f3ece0; --muted:#a39a8c; --line:#2f2a24;
+      --accent:#ff7a3d; --accent-soft:#3a2216; --good:#69db7c; --good-soft:#18301d; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.45}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 48px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .brand{font-family:Fraunces,serif;font-weight:800;font-size:clamp(28px,5vw,40px);letter-spacing:-.02em;margin:0}
+  .brand span{color:var(--accent)}
+  .sub{color:var(--muted);font-size:14px;margin-top:2px}
+  .clock{font-size:14px;color:var(--muted);text-align:right}
+  .clock b{color:var(--ink);font-weight:600}
+  @media (max-width:560px){ .clock{text-align:left} }
+
+  .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:22px}
+  .day{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:10px 4px;cursor:pointer;
+       text-align:center;color:var(--ink);font:inherit;transition:transform .12s,border-color .12s}
+  .day:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .day .dn{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .day .dd{font-family:Fraunces,serif;font-size:22px;font-weight:600}
+  .day.today .dn::after{content:" • today";color:var(--accent)}
+  .day.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .day.active .dn,.day.active.today .dn::after{color:#fff}
+  @media (max-width:560px){ .day .dd{font-size:18px} .day.today .dn::after{content:" •"} }
+
+  .title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+  .title h2{font-family:Fraunces,serif;font-size:clamp(26px,4.5vw,36px);margin:0;letter-spacing:-.01em}
+  .title .date{color:var(--accent);font-weight:500}
+
+  .meals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:860px){ .meals{grid-template-columns:1fr} }
+  .meal{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+  .meal.now{border-color:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+  .mh{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .mh h3{margin:0;font-family:Fraunces,serif;font-size:22px}
+  .time{font-size:13px;font-weight:600;color:var(--muted);background:var(--bg);padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .badge{display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+         padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:middle}
+  .badge.now{background:var(--good-soft);color:var(--good)}
+  .badge.next{background:var(--accent-soft);color:var(--accent)}
+  ul{list-style:none;margin:0;padding:12px 18px 18px}
+  li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  li:last-child{border-bottom:0}
+  li.nv::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#c92a2a;margin-right:8px;vertical-align:middle}
+  li.sp{font-weight:600}
+  li.sp::after{content:"★";color:var(--accent);margin-left:6px;font-size:12px}
+
+  .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 16px}
+  .search{flex:1;min-width:200px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+  .legend{font-size:13px;color:var(--muted);display:flex;gap:14px}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#c92a2a;margin-right:5px}
+  .results{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:16px;display:none;font-size:14px}
+  .results b{color:var(--accent)}
+  .stale{display:none;background:var(--accent-soft);color:var(--ink);border:1px solid var(--accent);border-radius:14px;padding:12px 16px;margin-bottom:16px;font-size:14px}
+  .stale a{color:var(--accent)}
+  .pdf{padding:10px 14px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:14px;white-space:nowrap}
+  .install{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 16px;margin-bottom:16px;font-size:14px}
+  .install summary{cursor:pointer;font-weight:600}
+  .install p{margin:8px 0 2px;color:var(--muted)}
+  @media (display-mode: standalone){ .install{display:none} }
+  footer{margin-top:32px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1 class="brand">mess_menu<span>.com</span></h1>
+      <div class="sub">Daily mess menu · BITS Pilani, Pilani campus</div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </header>
+
+  <nav class="days" id="days" aria-label="Choose day"></nav>
+
+  <div class="tools">
+    <input class="search" id="search" type="search" placeholder="Search the week… e.g. paneer, dosa, ice cream">
+    <div class="legend"><span><i></i>Non-veg</span><span>★ Special</span></div>
+    <a class="pdf" href="menu.pdf">⬇ Weekly PDF</a>
+  </div>
+  <details class="install" id="install">
+    <summary>📲 Add this app to your home screen</summary>
+    <p><b>Android (Chrome):</b> tap ⋮ (top right) → <b>Add to Home screen</b> / <b>Install app</b>.<br>
+    <b>iPhone (Safari):</b> tap the Share button → <b>Add to Home Screen</b>.<br>
+    A "Mess Menu" icon appears. It updates by itself every morning.</p>
+  </details>
+  <div class="results" id="results"></div>
+  <div class="stale" id="stale">This week's menu hasn't been updated yet. Check <a href="https://ssms-pilani.in/">ssms-pilani.in</a> for today's menu.</div>
+
+  <div class="title"><h2 id="dayName"></h2><span class="date" id="dayDate"></span></div>
+  <section class="meals" id="meals"></section>
+
+  <footer>
+    Menu data from <a href="https://ssms-pilani.in/">ssms-pilani.in</a> (SSMS, BITS Pilani), fetched on <span id="fetched"></span>.
+    Unofficial site — if something looks off, check the official page.
+  </footer>
+</div>
+
+<script>
+const FETCHED = "22 Nov 2026";
+const MENU = [
+ {
+  "day": "Sunday",
+  "date": "2026-11-22",
+  "meals": {
+   "Breakfast": {
+    "time": "08:00 - 10:00",
+    "items": [
+     "Choice of Egg",
+     "Boiled Soya Sprout",
+     "Chocos",
+     "Bread + Butter + Jam",
+     "Misal Pav",
+     "Millets Porridge",
+     "Onion + Lemon",
+     "Cut Honey Dew",
+     "Tea + Coffee + Bournvita",
+     "Milk"
+    ]
+   },
+   "Lunch": {
+    "time": "12:00 - 14:00",
+    "items": [
+     "Green Salad (cucumber, beetroot, carrot, radish)",
+     "Paneer Lababdar",
+     "Hariyali Chicken",
+     "Naan/Chapati (limited)",
+     "Kashmiri Pulao",
+     "Sambar",
+     "Boondi Raita",
+     "Blackcurrant Ice Cream",
+     "Pyaaz Ki Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Green Salad (cucumber, beetroot, carrot, radish)",
+     "Aloo Palak",
+     "Whole Masoor Dal",
+     "Chapati",
+     "Plain Rice",
+     "Veg Clear Soup",
+     "Rasam"
+    ]
+   }
+  }
+ },
+ {
+  "day": "Monday",
+  "date": "2026-11-23",
+  "meals": {
+   "Breakfast": {
+    "time": "07:15 - 09:30",
+    "items": [
+     "Choice of Egg",
+     "Boiled Mix Sprout Tadka",
+     "Cornflakes",
+     "Bread + Butter + Jam",
+     "Masala Dosa",
+     "Sambhar",
+     "Peanut Chutney",
+     "Cut Pineapple",
+     "Tea + Coffee + Bournvita",
+     "Milk"
+    ]
+   },
+   "Lunch": {
+    "time": "11:30 - 13:30",
+    "items": [
+     "Veg Bullets",
+     "Baingan Bharta",
+     "Rajma Raseela",
+     "Dal Panchratan",
+     "Sattu Ke Parathe",
+     "Plain Rice",
+     "Plain Curd",
+     "Sambar",
+     "Lahsun Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Green Salad (cucumber, beetroot, carrot, radish)",
+     "Gatta Curry",
+     "Mix Dal",
+     "Chapati",
+     "Plain Rice",
+     "Palak Soup",
+     "Rasam",
+     "Moong Dal Halwa",
+     "Lahsun Chutney"
+    ]
+   }
+  }
+ },
+ {
+  "day": "Tuesday",
+  "date": "2026-11-24",
+  "meals": {
+   "Breakfast": {
+    "time": "07:15 - 09:30",
+    "items": [
+     "Choice of Egg",
+     "Moong Sprout (ankurit)",
+     "Chocos",
+     "Bread + Butter + Jam",
+     "Stuffed Kulcha",
+     "Sweet Daliya",
+     "Onion + Lemon",
+     "Orange",
+     "Tea + Coffee + Bournvita",
+     "Milk"
+    ]
+   },
+   "Lunch": {
+    "time": "11:30 - 13:30",
+    "items": [
+     "Masala Papad",
+     "Aloo Gobhi Mutter",
+     "Dahi Kadhi Pakoda",
+     "Moong Dal Khichdi",
+     "Chapati",
+     "Plain Rice",
+     "Sambar",
+     "Plain Curd",
+     "Lahsun Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Mirch Ke Tapore",
+     "Aloo Rassa",
+     "Chana Dal Tadka",
+     "Chapati/Bati",
+     "Plain Rice",
+     "Tomato Soup",
+     "Rasam",
+     "Churma",
+     "Lahsun Chutney"
+    ]
+   }
+  }
+ },
+ {
+  "day": "Wednesday",
+  "date": "2026-11-25",
+  "meals": {
+   "Breakfast": {
+    "time": "07:15 - 09:30",
+    "items": [
+     "Choice of Egg",
+     "Moth Sprout (ankurit)",
+     "Cornflakes",
+     "Bread + Butter + Jam",
+     "Mix Veg Uttapam",
+     "Sambhar",
+     "Coconut Chutney",
+     "Papaya",
+     "Tea + Coffee + Bournvita",
+     "Milk"
+    ]
+   },
+   "Lunch": {
+    "time": "11:30 - 13:30",
+    "items": [
+     "Green Salad (cucumber, beetroot, carrot, radish)",
+     "Paneer Amritsari",
+     "Chicken Home Style",
+     "Onion Rice",
+     "Chapati",
+     "Sambar",
+     "Mix Veg Raita",
+     "Pyaaz Ki Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Medu Wada",
+     "Masala Dosa",
+     "Sambhar",
+     "Coconut Chutney",
+     "Jeera Rice",
+     "Manchow Soup",
+     "Chapati (limited)",
+     "Chocolate Barfi",
+     "Podi Chutney"
+    ]
+   }
+  }
+ },
+ {
+  "day": "Thursday",
+  "date": "2026-11-26",
+  "meals": {
+   "Breakfast": {
+    "time": "07:15 - 09:30",
+    "items": [
+     "Choice of Egg",
+     "Boiled Chana Sprout",
+     "Chocos",
+     "Bread + Butter + Jam",
+     "Veg Poha",
+     "Sweet Daliya",
+     "Sev",
+     "Banana",
+     "Tea + Coffee + Bournvita",
+     "Milk"
+    ]
+   },
+   "Lunch": {
+    "time": "11:30 - 13:30",
+    "items": [
+     "Koshimbir Salad",
+     "Paneer Butter Masala",
+     "Dal Maharani",
+     "Naan/Chapati (limited)",
+     "Peas Carrot Pulao",
+     "Masala Chaas",
+     "Chocolate Chip Ice Cream",
+     "Tomato Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Lemon + Onion",
+     "Jeera Aloo",
+     "Amritsari Chole",
+     "Kulcha/Chapati (limited)",
+     "Plain Rice",
+     "Lemon Coriander Soup",
+     "Rasam",
+     "Pineapple Sheera",
+     "Pyaaz Ki Chutney"
+    ]
+   }
+  }
+ },
+ {
+  "day": "Friday",
+  "date": "2026-11-27",
+  "meals": {
+   "Breakfast": {
+    "time": "07:15 - 09:30",
+    "items": [
+     "Choice of Egg",
+     "Boiled Soya Sprout",
+     "Cornflakes",
+     "Bread + Butter + Jam",
+     "Moong Dal Chilla",
+     "Sweet Daliya",
+     "Coconut Chutney",
+     "Cut Pineapple",
+     "Tea + Coffee + Bournvita"
+    ]
+   },
+   "Lunch": {
+    "time": "11:30 - 13:30",
+    "items": [
+     "Corn Chaat",
+     "Capsicum Pitla",
+     "Dum Aloo Kashmiri",
+     "Dal Makhani",
+     "Chapati",
+     "Plain Rice",
+     "Sambar",
+     "Masala Chaas",
+     "Pyaaz Ki Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Green Salad (cucumber, beetroot, carrot, radish)",
+     "Tofu Masala",
+     "Egg Curry",
+     "Mix Dal Tadka",
+     "Peas Pulao",
+     "Chapati",
+     "Rasam",
+     "Shahi Tukda",
+     "Lahsun Chutney"
+    ]
+   }
+  }
+ },
+ {
+  "day": "Saturday",
+  "date": "2026-11-28",
+  "meals": {
+   "Breakfast": {
+    "time": "07:15 - 09:30",
+    "items": [
+     "Choice of Egg",
+     "Boiled Mix Sprout Tadka",
+     "Chocos",
+     "Bread + Butter + Jam",
+     "Seviya Upma",
+     "Adrak Chutney",
+     "Cut Honey Dew",
+     "Tea + Coffee + Bournvita",
+     "Milk"
+    ]
+   },
+   "Lunch": {
+    "time": "11:30 - 13:30",
+    "items": [
+     "Crispy Corn",
+     "Kala Chana Masala",
+     "Curd/Butter",
+     "Sattu Paratha/Chapati (limited)",
+     "Plain Rice",
+     "Sambar",
+     "Lahsun Chutney"
+    ]
+   },
+   "Dinner": {
+    "time": "18:45 - 20:15",
+    "items": [
+     "Bhel Puri",
+     "Carrot, Beans, Green Peas, Cabbage",
+     "Dal Makhani",
+     "Chapati",
+     "Onion Rice",
+     "Veg Clear Soup",
+     "Rasam",
+     "Gulab Jamun",
+     "Sweet & Green Chutney"
+    ]
+   }
+  }
+ }
+];
+const ORDER=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const NONVEG=/chicken|egg curry|mutton|fish/i;
+const SPECIAL=/paneer|ice cream|halwa|barfi|sheera|churma|hot choco|chicken|naan|gulab jamun|shahi tukda|tofu/i;
+
+// Current time in IST, whatever the viewer's timezone
+function nowIST(){
+  const d=new Date(); const utc=d.getTime()+d.getTimezoneOffset()*60000;
+  return new Date(utc+5.5*3600000);
+}
+const pad=n=>String(n).padStart(2,"0");
+const isoDate=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const toMin=t=>{const[h,m]=t.split(":").map(Number);return h*60+m};
+const fmtDate=iso=>new Date(iso+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"});
+
+const byDay=Object.fromEntries(MENU.map(d=>[d.day,d]));
+const now=nowIST();
+const todayName=ORDER[(now.getDay()+6)%7];
+let selected=todayName;
+try{ const h=location.hash.slice(1); if(ORDER.map(s=>s.toLowerCase()).includes(h)) selected=h[0].toUpperCase()+h.slice(1); }catch(e){}
+
+function mealStatus(dayName, meal){
+  if(dayName!==todayName) return "";
+  const n=nowIST(), mins=n.getHours()*60+n.getMinutes();
+  const [s,e]=meal.time.split(" - ").map(toMin);
+  if(mins>=s && mins<=e) return "now";
+  return "";
+}
+function nextMealName(){
+  const n=nowIST(), mins=n.getHours()*60+n.getMinutes();
+  const today=byDay[todayName];
+  for(const [name,m] of Object.entries(today.meals)){
+    const [s,e]=m.time.split(" - ").map(toMin);
+    if(mins<=e) return name;
+  }
+  return null;
+}
+
+function renderDays(){
+  const el=document.getElementById("days"); el.innerHTML="";
+  ORDER.forEach(name=>{
+    const d=byDay[name]; const dt=new Date(d.date+"T00:00:00");
+    const b=document.createElement("button");
+    b.className="day"+(name===selected?" active":"")+(name===todayName?" today":"");
+    b.innerHTML=`<div class="dn">${name.slice(0,3)}</div><div class="dd">${dt.getDate()}</div>`;
+    b.onclick=()=>{selected=name; try{history.replaceState(null,"","#"+name.toLowerCase())}catch(e){} render();};
+    el.appendChild(b);
+  });
+}
+function renderMeals(){
+  const d=byDay[selected];
+  document.getElementById("dayName").textContent=d.day;
+  document.getElementById("dayDate").textContent=fmtDate(d.date);
+  const next=selected===todayName?nextMealName():null;
+  const box=document.getElementById("meals"); box.innerHTML="";
+  for(const [name,m] of Object.entries(d.meals)){
+    const st=mealStatus(selected,m);
+    const badge= st==="now" ? `<span class="badge now">Serving now</span>`
+               : (name===next ? `<span class="badge next">Up next</span>` : "");
+    const items=m.items.map(i=>{
+      const cls=[NONVEG.test(i)?"nv":"", SPECIAL.test(i)?"sp":""].join(" ").trim();
+      return `<li class="${cls}">${i}</li>`;
+    }).join("");
+    box.insertAdjacentHTML("beforeend",
+      `<article class="meal ${st}"><div class="mh"><h3>${name}${badge}</h3><span class="time">${m.time}</span></div><ul>${items}</ul></article>`);
+  }
+}
+function renderClock(){
+  const n=nowIST();
+  const t=n.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit",hour12:true});
+  const nm=nextMealName();
+  document.getElementById("clock").innerHTML=`<b>${todayName}, ${t} IST</b><br>${nm?("Next up: "+nm+" · "+byDay[todayName].meals[nm].time):"Mess closed for today"}`;
+}
+function render(){
+  renderDays();renderMeals();renderClock();
+  document.getElementById("stale").style.display = byDay[todayName].date===isoDate(nowIST()) ? "none" : "block";
+}
+
+document.getElementById("search").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase(), out=document.getElementById("results");
+  if(q.length<2){out.style.display="none";return;}
+  const hits=[];
+  ORDER.forEach(day=>{ for(const [meal,m] of Object.entries(byDay[day].meals))
+    m.items.forEach(i=>{ if(i.toLowerCase().includes(q)) hits.push(`<b>${day.slice(0,3)}</b> ${meal} — ${i}`); }); });
+  out.innerHTML=hits.length?hits.join("<br>"):"Not on the menu this week.";
+  out.style.display="block";
+});
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1); const m=ORDER.find(d=>d.toLowerCase()===h); if(m){selected=m;render();}});
+document.getElementById("fetched").textContent=FETCHED;
+render();
+setInterval(render,60000);
+if ("serviceWorker" in navigator) { try { navigator.serviceWorker.register("sw.js").catch(()=>{}); } catch (e) {} }
+// When the app is reopened after midnight, reload to pick up the new day's data
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && isoDate(nowIST())!==window.__loadedDay) location.reload(); });
+window.__loadedDay = isoDate(nowIST());
+</script>
+</body>
+</html>
