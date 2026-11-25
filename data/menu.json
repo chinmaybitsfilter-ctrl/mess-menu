@@ -1,5 +1,5 @@
 {
- "fetched": "24 Nov 2026",
+ "fetched": "25 Nov 2026",
  "days": [
   {
    "day": "Monday",
@@ -50,19 +50,19 @@
   },
   {
    "day": "Tuesday",
-   "date": "2026-11-24",
+   "date": "2026-11-17",
    "meals": {
     "Breakfast": {
      "time": "07:15 - 09:30",
      "items": [
       "Choice of Egg",
       "Moong Sprout (ankurit)",
-      "Chocos",
+      "Cornflakes",
       "Bread + Butter + Jam",
-      "Stuffed Kulcha",
-      "Sweet Daliya",
-      "Onion + Lemon",
-      "Orange",
+      "Rawa Idli",
+      "Sambar",
+      "Peanut Chutney",
+      "Banana",
       "Tea + Coffee + Bournvita",
       "Milk"
      ]
@@ -70,29 +70,28 @@
     "Lunch": {
      "time": "11:30 - 13:30",
      "items": [
-      "Masala Papad",
-      "Aloo Gobhi Mutter",
-      "Dahi Kadhi Pakoda",
-      "Moong Dal Khichdi",
-      "Chapati",
+      "Green Salad (cucumber, beetroot, carrot, radish)",
+      "Baingan Bharta",
+      "Rajma Masala",
+      "Yellow Dal Tadka",
+      "Azwaini Paratha/Chapati (limited)",
       "Plain Rice",
-      "Sambar",
       "Plain Curd",
-      "Lahsun Chutney"
+      "Sambar",
+      "Pyaaz Ki Chutney"
      ]
     },
     "Dinner": {
      "time": "18:45 - 20:15",
      "items": [
-      "Mirch Ke Tapore",
-      "Aloo Rassa",
-      "Chana Dal Tadka",
-      "Chapati/Bati",
-      "Plain Rice",
-      "Tomato Soup",
+      "Lemon + Onion",
+      "Khatta Meetha Pumpkin",
+      "Chole Masala",
+      "Puri/Chapati (limited)",
+      "Jeera Rice",
       "Rasam",
-      "Churma",
-      "Lahsun Chutney"
+      "Seviya Kheer",
+      "Pyaaz Ki Chutney"
      ]
     }
    }
