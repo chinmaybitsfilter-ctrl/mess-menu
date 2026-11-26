@@ -1,5 +1,5 @@
 {
- "fetched": "25 Nov 2026",
+ "fetched": "26 Nov 2026",
  "days": [
   {
    "day": "Monday",
@@ -9,7 +9,7 @@
      "time": "07:15 - 09:30",
      "items": [
       "Choice of Egg",
-      "Moth Sprout (ankurit)",
+      "Moth Sprout (अंकुरित)",
       "Chocos",
       "Bread + Butter + Jam",
       "Vada Pav",
@@ -56,7 +56,7 @@
      "time": "07:15 - 09:30",
      "items": [
       "Choice of Egg",
-      "Moong Sprout (ankurit)",
+      "Moong Sprout (अंकुरित)",
       "Cornflakes",
       "Bread + Butter + Jam",
       "Rawa Idli",
@@ -98,19 +98,19 @@
   },
   {
    "day": "Wednesday",
-   "date": "2026-11-25",
+   "date": "2026-11-18",
    "meals": {
     "Breakfast": {
      "time": "07:15 - 09:30",
      "items": [
       "Choice of Egg",
-      "Moth Sprout (ankurit)",
-      "Cornflakes",
+      "Boiled Soya Bean Sprout",
+      "Chocos",
       "Bread + Butter + Jam",
-      "Mix Veg Uttapam (capsicum, Carrot, Onion,tomato)",
-      "Sambhar",
-      "Coconut Chutney",
-      "Papaya",
+      "Mix Veg Poha",
+      "Sev",
+      "Onion + Lemon",
+      "Cut Pineapple",
       "Tea + Coffee + Bournvita",
       "Milk"
      ]
@@ -119,27 +119,26 @@
      "time": "11:30 - 13:30",
      "items": [
       "Green Salad (cucumber, beetroot, carrot, radish)",
-      "Paneer Amritsari",
-      "Chicken Home Style",
-      "Onion Rice",
-      "Chapati",
+      "Paneer Home Style (chopped Gravy)",
+      "Butter Chicken",
+      "Tikona Paratha",
+      "Peas Pulao",
+      "Boondi Raita",
+      "Chocochip Ice Cream",
       "Sambar",
-      "Mix Veg Raita",
-      "Pyaaz Ki Chutney"
+      "Lahsun Chutney (dry)"
      ]
     },
     "Dinner": {
      "time": "18:45 - 20:15",
      "items": [
-      "Medu Wada",
-      "Masala Dosa",
-      "Sambhar",
-      "Coconut Chutney",
-      "Jeera Rice",
-      "Manchow Soup",
-      "Chapati (limited)",
-      "Chocolate Barfi",
-      "Podi Chutney"
+      "Mix Bhajiya",
+      "Sev Tomato",
+      "Dal Makhani",
+      "Chapati",
+      "Plain Rice",
+      "Rasam",
+      "Coriander Chutney"
      ]
     }
    }
@@ -172,7 +171,7 @@
       "Naan/Chapati (limited)",
       "Peas Carrot Pulao",
       "Masala Chaas",
-      "Chocolate Chip Ice Cream",
+      "Butter Scotch Ice Cream",
       "Tomato Chutney"
      ]
     },
